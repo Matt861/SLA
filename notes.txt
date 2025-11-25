@@ -1,0 +1,13 @@
+PROJECT WORKFLOW
+
+1) Extract and copy assessment
+2) Read content of all assessment files
+3) Retrieve hashes of all assessment files
+4) Retrieve headers from assessment files
+5) Search assessment files for known assessment license/header text (EXACT matches)
+6) Search assessment files for full license text (EXACT matches)
+7) Search assessment files for full header text (EXACT matches)
+8) Search assessment files for fuzzy license text matches (STRONG matches)
+9) Search assessment files for fuzzy license header text matches (STRONG matches)
+10) Search assessment files for keyword combination matches (MEDIUM matches)
+11) Search assessment files for keyword matches (WEAK matches)

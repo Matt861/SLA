@@ -1,0 +1,4 @@
+Copyright\ \(c\)\ ,\ ,\ MIPS\ Computer\ Systems,\ Inc\.\
+MIPS\ Computer\ Systems,\ Inc\.\ grants\ reproduction\ and\ use\
+rights\ to\ all\ parties,\ PROVIDED\ that\ this\ comment\ is\
+maintained\ in\ the\ copy\.

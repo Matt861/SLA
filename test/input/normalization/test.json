@@ -1,0 +1,23 @@
+[
+  {
+    "file_path": "my-ubi8-java8\\index.json",
+    "file_hash": "5594f748437714f6beb8fefaa9361ec50aff847fb59a5bf2bdec10ab8f4b24d6",
+    "license": null,
+    "file_content_b64": "eJyNjs1ugzAQBt/F1ybG/NmG56h6qXpY7A3ZFGxkU1SKePc6Fal67HX3m9FsLJorjvCCIZJ3rC1ObERL8LxOyFoG0zSQgTn9ssVZ7g1xGqFHTs7iJ1/yp1tMXKLA0QXjHFn7uv3T8WD+aCz16ZCoeIWilq1WNciygUIJbFCUZW46o0GLohJVro0pa9sUaaJkDjK3tamEKoWRSkitjEzKSF8po67ViYFzfv4pSZkbI8+NdzOQw2CPJgfjPdp6846Bk88G6gKENRvX80dH+nyDBXQ7wHzvPDEfeu4ndL+ieIgCXh6yY7zvb/s3iZJ8AQ==",
+    "file_content_is_text": true
+  },
+  {
+    "file_path": "my-ubi8-java8\\manifest.json",
+    "file_hash": "7624154a7cedab0a42df3a6cb9b81a1d570b030266dc1f4e33e6f1f89614e496",
+    "license": null,
+    "file_content_b64": "eJytkb1OA0EMhHseY+vkst5/X0tLBekQhb3rDYuSXJRLIgWUd+cAgYREFzoXo5lvxo9v6nbY1rZSveL1wONifCbjw4IQa7LZciq2moTE4BitjibYoGOOHJkK2JIqGKnCiV1gEsMEFjyrmbqX3bCk1aj6R7U5z4/c0vyFTpT6NR1kPKinmbqjs+w/Fb/SU3WGigk5F5IoWbtCGb0GsVkDUEo5hWC9x4CI0UmuEDBON4Krukzpv9uI8RUzG2CKJjECoLekxbIV7VJC43RmCQ6czVkM+GBAo5OAWoh+UB+G4z7LBPymvqz7q1Enq42URsvzTqYv0G63bpkObdguTtvSDbl1bUMr6dYfAN0JugPtp4Jje5306AJYr91Mlbb6GLX/N7DL7Nvq6vmu62i9NVHH9EfJq8kul8vTzTurruGl",
+    "file_content_is_text": true
+  },
+  {
+    "file_path": "my-ubi8-java8\\oci-layout",
+    "file_hash": "0cdedc0869d60bb59e3dde736f996025e70318180587e049cfa22f80d67aa8e5",
+    "license": null,
+    "file_content_b64": "eJyrVsrMTUxP9UmszC8tCUstKs7Mz1OyUlAy1DPQM1CqBQC07Aov",
+    "file_content_is_text": true
+  }
+]

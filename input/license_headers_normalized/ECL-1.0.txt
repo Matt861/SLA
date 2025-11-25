@@ -1,0 +1,2 @@
+Copyright\ \(c\)\ \\d\{4\}\ .+?\
+Licensed\ under\ the\ Educational\ Community\ License\ version\ 1\.0

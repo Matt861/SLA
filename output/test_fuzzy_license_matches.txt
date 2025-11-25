@@ -1,0 +1,207 @@
+File path: C:/license_assessments/my-ubi8-java8/blobs/sha256/8f42ad26ccdae7ec04dac9501e3c011a88c8663559699974ecf1697999914f0d_extracted/usr/share/licenses/libcap-ng/COPYING.LIB
+Fuzzy license: LGPL-2.1-or-later
+Fuzzy match %: 97.45762711864407
+Fuzzy match text: This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+File path: C:/license_assessments/my-ubi8-java8/blobs/sha256/8f42ad26ccdae7ec04dac9501e3c011a88c8663559699974ecf1697999914f0d_extracted/usr/share/licenses/libsigsegv/COPYING
+Fuzzy license: GPL-3.0-or-later
+Fuzzy match %: 92.07920792079209
+Fuzzy match text: This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not,
+File path: C:/license_assessments/my-ubi8-java8/blobs/sha256/8f42ad26ccdae7ec04dac9501e3c011a88c8663559699974ecf1697999914f0d_extracted/usr/share/licenses/rpm/COPYING
+Fuzzy license: GPL-3.0-or-later
+Fuzzy match %: 92.07920792079209
+Fuzzy match text: This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not,
+File path: C:/license_assessments/my-ubi8-java8/blobs/sha256/ae25f9cb21ba728b911953a0e3b3e04889240cbe64143cce215621094e690eaa_extracted/usr/share/doc/diffutils/README
+Fuzzy license: GFDL-1.1-no-invariants-or-later
+Fuzzy match %: 80.0
+Fuzzy match text: Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.  A copy of the license is included in the
+File path: C:/license_assessments/my-ubi8-java8/blobs/sha256/ae25f9cb21ba728b911953a0e3b3e04889240cbe64143cce215621094e690eaa_extracted/usr/share/doc/gzip/NEWS
+Fuzzy license: GFDL-1.1-no-invariants-or-later
+Fuzzy match %: 80.0
+Fuzzy match text: Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.  A copy of the license is included in the
+File path: C:/license_assessments/my-ubi8-java8/blobs/sha256/ae25f9cb21ba728b911953a0e3b3e04889240cbe64143cce215621094e690eaa_extracted/usr/share/doc/gzip/README
+Fuzzy license: GFDL-1.1-no-invariants-or-later
+Fuzzy match %: 80.0
+Fuzzy match text: Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.  A copy of the license is included in the
+File path: C:/license_assessments/my-ubi8-java8/blobs/sha256/ae25f9cb21ba728b911953a0e3b3e04889240cbe64143cce215621094e690eaa_extracted/usr/share/doc/gzip/TODO
+Fuzzy license: GFDL-1.1-no-invariants-or-later
+Fuzzy match %: 80.0
+Fuzzy match text: Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.  A copy of the license is included in the
+File path: C:/license_assessments/my-ubi8-java8/blobs/sha256/ae25f9cb21ba728b911953a0e3b3e04889240cbe64143cce215621094e690eaa_extracted/usr/share/doc/java-1.8.0-openjdk-1.8.0.472.b08-1.el8/java-1.8.0-openjdk-portable.specfile
+Fuzzy license: OSL-1.1
+Fuzzy match %: 62.5
+Fuzzy match text: licensed under the W3C Software License
+File path: C:/license_assessments/my-ubi8-java8/blobs/sha256/ae25f9cb21ba728b911953a0e3b3e04889240cbe64143cce215621094e690eaa_extracted/usr/share/doc/lksctp-tools/COPYING
+Fuzzy license: GPL-3.0-or-later
+Fuzzy match %: 92.07920792079209
+Fuzzy match text: This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not,
+File path: C:/license_assessments/my-ubi8-java8/blobs/sha256/ae25f9cb21ba728b911953a0e3b3e04889240cbe64143cce215621094e690eaa_extracted/usr/share/licenses/cracklib/COPYING.LIB
+Fuzzy license: LGPL-2.1-or-later
+Fuzzy match %: 97.45762711864407
+Fuzzy match text: This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+File path: C:/license_assessments/my-ubi8-java8/blobs/sha256/ae25f9cb21ba728b911953a0e3b3e04889240cbe64143cce215621094e690eaa_extracted/usr/share/licenses/cups-libs/LICENSE.txt
+Fuzzy license: GPL-3.0-or-later
+Fuzzy match %: 92.07920792079209
+Fuzzy match text: This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not,
+File path: C:/license_assessments/my-ubi8-java8/blobs/sha256/ae25f9cb21ba728b911953a0e3b3e04889240cbe64143cce215621094e690eaa_extracted/usr/share/licenses/glibc/LICENSES
+Fuzzy license: AGPL-3.0-or-later
+Fuzzy match %: 85.57692307692307
+Fuzzy match text: you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public
+ License along with this library; if not, see
+File path: C:/license_assessments/my-ubi8-java8/blobs/sha256/ae25f9cb21ba728b911953a0e3b3e04889240cbe64143cce215621094e690eaa_extracted/usr/share/licenses/rpm/COPYING
+Fuzzy license: GPL-3.0-or-later
+Fuzzy match %: 92.07920792079209
+Fuzzy match text: This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not,
+File path: C:/license_assessments/my-ubi8-java8/blobs/sha256/8f42ad26ccdae7ec04dac9501e3c011a88c8663559699974ecf1697999914f0d_extracted/usr/share/licenses/libsigsegv/COPYING
+Fuzzy license: GPL-3.0-or-later
+Fuzzy match %: 92.07920792079209
+Fuzzy match text: This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not,
+File path: C:/license_assessments/my-ubi8-java8/blobs/sha256/8f42ad26ccdae7ec04dac9501e3c011a88c8663559699974ecf1697999914f0d_extracted/usr/share/licenses/libsigsegv/COPYING
+Fuzzy license: LGPL-2.0-only
+Fuzzy match %: 100.0
+Fuzzy match text: Boston, MA 02110-1301, USA.
+File path: C:/license_assessments/my-ubi8-java8/blobs/sha256/8f42ad26ccdae7ec04dac9501e3c011a88c8663559699974ecf1697999914f0d_extracted/usr/share/licenses/libsigsegv/COPYING
+Fuzzy license: GPL-3.0-or-later
+Fuzzy match %: 92.07920792079209
+Fuzzy match text: This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not,
+File path: C:/license_assessments/my-ubi8-java8/blobs/sha256/8f42ad26ccdae7ec04dac9501e3c011a88c8663559699974ecf1697999914f0d_extracted/usr/share/licenses/libsigsegv/COPYING
+Fuzzy license: GPL-3.0-or-later
+Fuzzy match %: 92.07920792079209
+Fuzzy match text: This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not,
