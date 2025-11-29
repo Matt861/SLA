@@ -289,6 +289,33 @@ def _extract_version(text: str) -> Optional[str]:
     return None
 
 
+def _extract_versions(text: str) -> Optional[List[str]]:
+    """
+    Extract all version numbers indicated by one of:
+      - "version" <number>
+      - "v" or "v." <number>
+      - "license" <number>
+
+    Returns a list of numeric parts as strings (e.g. ["2", "3.0"]), or None if none found.
+    """
+    if not text:
+        return None
+
+    versions: List[str] = []
+
+    # Use finditer instead of search to get all matches
+    for match in _VERSION_RE.finditer(text):
+        # Keep the same "first non-None group" logic per match
+        for g in match.groups():
+            if g is not None:
+                # Only add if it's not already in the list (distinct versions)
+                if g not in versions:
+                    versions.append(g)
+                break  # move to the next match
+
+    return versions or None
+
+
 def search_assessment_files_for_fuzzy_license_header_match(license_dirs: List[Path]):
     license_headers = utils.load_file_contents_from_directory(license_dirs)
 
@@ -310,6 +337,7 @@ def search_assessment_files_for_fuzzy_license_header_match(license_dirs: List[Pa
                 license_name = utils.get_file_name_from_path_without_extension(pattern_path)
                 fuzzy_match_result.license_name = license_name
                 fuzzy_match_result.expected_version = utils.extract_version_from_name(license_name)
+                #found_version = _extract_versions(fuzzy_match_result.matched_substring)
                 found_version = _extract_version(fuzzy_match_result.matched_substring)
                 fuzzy_match_result.found_version = utils.normalize_number_string(found_version)
                 file_model.fuzzy_license_matches.append(fuzzy_match_result)

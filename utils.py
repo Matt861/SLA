@@ -190,12 +190,20 @@ def normalize_for_compare(value: Union[str, bytes, None]) -> str:
     return value.strip()
 
 
+
 def remove_punctuation_keep_decimal_dots(text: str) -> str:
     """
     Remove all punctuation from `text`, except for '.' characters that are part
     of numbers or version-like tokens (i.e., a '.' with digits on both sides,
     such as in '1.0' or '1.0.0').
+
+    Also handles LaTeX-style escaped sequences like '\&.' so that
+    '2\\&.0\\&.' becomes '2.0'.
     """
+    # Normalize '\&.' sequences to a plain dot
+    # "v\\&. 2\\&.0\\&." -> "v. 2.0."
+    text = re.sub(r'\\&\.', '.', text)
+
     punctuation = set(string.punctuation)
     result_chars = []
     n = len(text)
@@ -218,10 +226,64 @@ def remove_punctuation_keep_decimal_dots(text: str) -> str:
             continue
 
         # Any other punctuation: remove it (skip)
-        # e.g. ',', '!', '?', '-', '$', etc.
         continue
 
     return ''.join(result_chars)
+
+
+# def remove_punctuation_keep_decimal_dots(text: str) -> str:
+#     """
+#     Remove all punctuation from `text`, except for '.' characters that are part
+#     of numbers or version-like tokens (i.e., a '.' with digits on both sides,
+#     such as in '1.0' or '1.0.0').
+#     """
+#     punctuation = set(string.punctuation)
+#     result_chars = []
+#     n = len(text)
+#
+#     for i, ch in enumerate(text):
+#         # Not punctuation? Always keep it.
+#         if ch not in punctuation:
+#             result_chars.append(ch)
+#             continue
+#
+#         # Special handling for dots
+#         if ch == '.':
+#             prev_ch = text[i - 1] if i > 0 else ''
+#             next_ch = text[i + 1] if i + 1 < n else ''
+#
+#             # Keep '.' only if it's between digits (e.g., 1.0, 1.0.0)
+#             if prev_ch.isdigit() and next_ch.isdigit():
+#                 result_chars.append(ch)
+#             # else: skip this dot
+#             continue
+#
+#         # Any other punctuation: remove it (skip)
+#         # e.g. ',', '!', '?', '-', '$', etc.
+#         continue
+#
+#     return ''.join(result_chars)
+
+
+# def remove_punctuation_keep_decimal_dots(text: str) -> str:
+#     """
+#     Remove all punctuation from `text`, except for '.' characters that are part
+#     of numbers or version-like tokens (i.e., a '.' with digits on both sides,
+#     such as in '1.0' or '1.0.0').
+#     """
+#     # Placeholder that is NOT punctuation, so it survives the strip step
+#     DECIMAL_DOT = "DECIMAL_DOT"
+#
+#     # 1) Protect decimal/version dots: 1.0, 1.0.0, 2.10, etc.
+#     protected = re.sub(r'(?<=\d)\.(?=\d)', DECIMAL_DOT, text)
+#
+#     # 2) Remove all punctuation (including dots)
+#     no_punct = ''.join(ch for ch in protected if ch not in string.punctuation)
+#
+#     # 3) Restore the protected decimal dots
+#     result = no_punct.replace(DECIMAL_DOT, '.')
+#
+#     return result
 
 
 def remove_punctuation_and_normalize_text(value: Union[str, bytes, None]) -> str:

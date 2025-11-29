@@ -33,7 +33,7 @@ def get_best_match_percent(file_data) -> float:
     return best
 
 
-def print_files_with_fuzzy_license_matches(file_path="output/fuzzy_license_matches.txt"):
+def print_files_with_fuzzy_license_matches(file_path="output/fuzzy_license_matches2.txt"):
     fuzzy_license_match_count = 0
     with tee_stdout(Path(Config.root_dir) / file_path):
         sorted_list = sorted(
@@ -55,6 +55,8 @@ def print_files_with_fuzzy_license_matches(file_path="output/fuzzy_license_match
                 print(f"Match percent: {fuzzy_license_match.match_percent:.2f}%")
                 print(f"Expected match version: {fuzzy_license_match.expected_version}")
                 print(f"Found match version: {fuzzy_license_match.found_version}")
+                # if not any(fuzzy_license_match.expected_version == v for v in fuzzy_license_match.found_version):
+                #     print("Version mismatch")
                 if fuzzy_license_match.found_version != fuzzy_license_match.expected_version:
                     print("Version mismatch")
                 print("Matched substring:")

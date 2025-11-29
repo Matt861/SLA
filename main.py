@@ -37,7 +37,7 @@ def main() -> None:
     # SCAN ALL ASSESSMENT FILES FOR PARTIAL MATCHING HEADERS
     # SCAN ALL ASSESSMENT FILES FOR FUZZY MATCHES OF LICENSE HEADERS
     #fuzzy_match_prototype_with_versioning.search_all_assessment_files_for_fuzzy_license_matches([Config.license_headers_dir])
-    fuzzy_license_header_search.search_assessment_files_for_fuzzy_license_header_match([Config.license_headers_dir])
+    fuzzy_license_header_search.search_assessment_files_for_fuzzy_license_header_match([Config.license_headers_dir, Config.manual_license_headers_dir])
     #fuzzy_match_prototype_optimized.search_all_assessment_files_for_fuzzy_license_matches([Config.license_headers_dir])
     # SCAN ALL ASSESSMENT FILES TO DETERMINE THE BEST FUZZY MATCH FOUND
     fuzzy_matches_evaluator.determine_best_fuzzy_match_from_file_data()
