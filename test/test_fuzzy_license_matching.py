@@ -6,7 +6,7 @@ import print_utils
 import utils
 from configuration import Configuration as Config
 from models.FileData import FileDataManager, FileData
-from search.fuzzy_license_header_search import search_assessment_files_for_fuzzy_license_header_match, MatchResult
+from search.fuzzy_license_search import search_assessment_files_for_fuzzy_license_header_match, MatchResult
 from tools import fuzzy_matches_evaluator
 from tools.assessment_reader import read_all_assessment_files
 from tools.print_statements_to_file_output import tee_stdout

@@ -4,18 +4,44 @@ from typing import Union
 import print_utils
 import utils
 from configuration import Configuration as Config
-from models.FileData import FileDataManager
+from models.FileData import FileDataManager, FileData
 from pathlib import Path
 
 from prototypes import fuzzy_match_prototype_optimized
 from prototypes.fuzzy_match_prototype_with_versioning import fuzzy_match_in_file
-from search import fuzzy_license_header_search
+from search import fuzzy_license_search
 from tools import assessment_reader, fuzzy_matches_evaluator
 
 p = Path(__file__).resolve()
 
 
 class TestTemplate(unittest.TestCase):
+
+    def test_fuzzy_matching_license_headers_to_single_file_text(self):
+        Config.file_data_manager = FileDataManager()
+        file_path = Path("input/fuzzy_matching/EVP_KDF_KB.7ssl").resolve()
+        try:
+            # Try reading as text
+            with open(file_path, "r", encoding="utf-8") as f:
+                content: Union[str, bytes] = f.read()
+        except UnicodeDecodeError:
+            # Fallback to binary
+            with open(file_path, "rb") as f:
+                content = f.read()
+        except Exception as e:
+            print(f"Could not read {file_path}: {e}")
+
+        file_data = FileData(file_path, content)
+        file_extension = utils.get_file_extension(file_path)
+        file_data.file_extension = file_extension
+        Config.file_data_manager.add_file_data(file_data)
+
+        licenses_dir = Path("input/fuzzy_matching_licenses").resolve()
+        fuzzy_license_header_search.search_assessment_files_for_fuzzy_license_header_match([licenses_dir])
+        fuzzy_matches_evaluator.determine_best_fuzzy_match_from_file_data()
+        print_utils.print_files_with_fuzzy_license_matches()
+
+
 
     def test_fuzzy_matching_license_headers_to_file_text2(self):
         Config.file_data_manager = FileDataManager()

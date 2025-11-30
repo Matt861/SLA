@@ -2,7 +2,7 @@ import os
 import re
 import string
 from pathlib import Path
-from typing import Union, List, Dict, Optional
+from typing import Union, List, Dict, Optional, Sequence
 
 import unicodedata
 
@@ -405,7 +405,29 @@ def extract_version_from_name(filename: str) -> Optional[str]:
     return None
 
 
-def normalize_number_string(value: Optional[str]) -> Optional[str]:
+# def normalize_number_string(value: Optional[str]) -> Optional[str]:
+#     """
+#     Take a numeric string like "2", "2.1", "10", "-3", etc.
+#
+#     - If it's an int (e.g. "2", "3", "10", "-3"), return it as "<int>.0"
+#       e.g. "2" -> "2.0", "-3" -> "-3.0"
+#     - Otherwise, return the original string unchanged
+#       e.g. "2.1" -> "2.1", "2.0" -> "2.0"
+#     - If value is None, return None
+#     """
+#     if value is None:
+#         return None
+#
+#     s = value.strip()
+#
+#     # Match an optional sign followed by digits only (no decimal point)
+#     if re.fullmatch(r'[+-]?\d+', s):
+#         return f"{int(s)}.0"
+#     else:
+#         return s
+
+
+def normalize_number_string(values: Optional[str]) -> list[str] | None:
     """
     Take a numeric string like "2", "2.1", "10", "-3", etc.
 
@@ -415,13 +437,37 @@ def normalize_number_string(value: Optional[str]) -> Optional[str]:
       e.g. "2.1" -> "2.1", "2.0" -> "2.0"
     - If value is None, return None
     """
-    if value is None:
+    if values is None:
         return None
 
-    s = value.strip()
+    normalized_strings = []
 
-    # Match an optional sign followed by digits only (no decimal point)
-    if re.fullmatch(r'[+-]?\d+', s):
-        return f"{int(s)}.0"
-    else:
-        return s
+    for value in values:
+
+        s = value.strip()
+
+        # Match an optional sign followed by digits only (no decimal point)
+        if re.fullmatch(r'[+-]?\d+', s):
+            normalized_strings.append(f"{int(s)}.0")
+            #return f"{int(s)}.0"
+        else:
+            normalized_strings.append(s)
+            #return s
+    return normalized_strings
+
+
+def any_match_allow_none(target: Optional[str],
+                         candidates: Optional[Sequence[Optional[str]]]) -> bool:
+    # If both target and candidates are None, no match is possible
+    if target is None and candidates is None:
+        return True
+
+    # Case 1: target is None – check if any candidate is None
+    if target is None:
+        return any(s is None for s in candidates)
+
+    if candidates is None:
+        return False
+
+    # Case 2: target is a real string – check string equality, skipping None
+    return any(s is not None and target == s for s in candidates)

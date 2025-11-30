@@ -2,9 +2,8 @@ from pathlib import Path
 
 import print_utils
 from models.FileData import FileDataManager
-from prototypes import fuzzy_match_prototype_with_versioning, fuzzy_match_prototype_optimized
 from timer import Timer
-from search import full_license_search, full_license_header_search, fuzzy_license_search2, fuzzy_license_header_search
+from search import fuzzy_license_search
 from tools import assessment_reader, file_release_assessor, file_hash_assessor, file_header_finder, \
     fuzzy_matches_evaluator
 from configuration import Configuration as Config
@@ -36,6 +35,7 @@ def main() -> None:
     #full_license_header_search.search_assessment_file_headers_for_full_license_header()
     # SCAN ALL ASSESSMENT FILES FOR PARTIAL MATCHING HEADERS
     # SCAN ALL ASSESSMENT FILES FOR FUZZY MATCHES OF LICENSE HEADERS
+    # BREAK LICENSE AND FILE STRING INDEXING OUT INTO THEIR OWN MODULES
     #fuzzy_match_prototype_with_versioning.search_all_assessment_files_for_fuzzy_license_matches([Config.license_headers_dir])
     fuzzy_license_header_search.search_assessment_files_for_fuzzy_license_header_match([Config.license_headers_dir, Config.manual_license_headers_dir])
     #fuzzy_match_prototype_optimized.search_all_assessment_files_for_fuzzy_license_matches([Config.license_headers_dir])
