@@ -319,19 +319,19 @@ def _extract_versions(text: str) -> Optional[List[str]]:
     return versions or None
 
 
-def search_assessment_files_for_fuzzy_license_header_match(license_dirs: List[Path]):
-    license_headers = utils.load_file_contents_from_directory(license_dirs)
-
-    # Pre-normalize all patterns once
-    license_headers: Dict[Path, str] = {
-        path: utils.remove_punctuation_and_normalize_text(text)
-        for path, text in license_headers.items()
-    }
+def fuzzy_match_assessment_files_for_licenses(pattern_indexes):
+    # license_headers = utils.load_file_contents_from_directory(license_dirs)
+    #
+    # # Pre-normalize all patterns once
+    # license_headers: Dict[Path, str] = {
+    #     path: utils.remove_punctuation_and_normalize_text(text)
+    #     for path, text in license_headers.items()
+    # }
 
     #utils.compare_values_of_two_dict(licenses, normalized_licenses)
-    file_indexes = build_file_indexes(Config.file_data_manager.get_all_file_data(), anchor_size=3)
-    pattern_indexes = build_pattern_indexes_from_dict(license_headers, anchor_size=3)
-    for f_idx in file_indexes:
+    # file_indexes = build_file_indexes(Config.file_data_manager.get_all_file_data(), anchor_size=3)
+    # pattern_indexes = build_pattern_indexes_from_dict(license_headers, anchor_size=3)
+    for f_idx in Config.file_indexes:
         file_model = f_idx.source_obj  # original model instance
         for p_idx in pattern_indexes:
             pattern_path = p_idx.source_path  # the Path key from Dict[Path, str]
@@ -358,4 +358,4 @@ def search_assessment_files_for_fuzzy_license_header_match(license_dirs: List[Pa
 
 
 if __name__ == "__main__":
-    search_assessment_files_for_fuzzy_license_header_match()
+    fuzzy_match_assessment_files_for_licenses()

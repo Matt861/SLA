@@ -1,11 +1,12 @@
 from pathlib import Path
 
 import print_utils
+import utils
 from models.FileData import FileDataManager
 from timer import Timer
 from search import fuzzy_license_search
 from tools import assessment_reader, file_release_assessor, file_hash_assessor, file_header_finder, \
-    fuzzy_matches_evaluator
+    fuzzy_matches_evaluator, index_file_content
 from configuration import Configuration as Config
 
 p = Path(__file__).resolve()
@@ -35,9 +36,13 @@ def main() -> None:
     #full_license_header_search.search_assessment_file_headers_for_full_license_header()
     # SCAN ALL ASSESSMENT FILES FOR PARTIAL MATCHING HEADERS
     # SCAN ALL ASSESSMENT FILES FOR FUZZY MATCHES OF LICENSE HEADERS
+    # READ/LOAD/NORMALIZE CONTENT OF LICENSES
+    license_headers_normalized = utils.read_and_normalize_licenses([Config.license_headers_dir, Config.manual_license_headers_dir])
     # BREAK LICENSE AND FILE STRING INDEXING OUT INTO THEIR OWN MODULES
+    Config.file_indexes = index_file_content.build_file_indexes(Config.file_data_manager.get_all_file_data(), anchor_size=3)
+    Config.license_header_indexes = index_file_content.build_pattern_indexes_from_dict(license_headers_normalized)
     #fuzzy_match_prototype_with_versioning.search_all_assessment_files_for_fuzzy_license_matches([Config.license_headers_dir])
-    fuzzy_license_header_search.search_assessment_files_for_fuzzy_license_header_match([Config.license_headers_dir, Config.manual_license_headers_dir])
+    fuzzy_license_search.fuzzy_match_assessment_files_for_licenses(Config.license_header_indexes)
     #fuzzy_match_prototype_optimized.search_all_assessment_files_for_fuzzy_license_matches([Config.license_headers_dir])
     # SCAN ALL ASSESSMENT FILES TO DETERMINE THE BEST FUZZY MATCH FOUND
     fuzzy_matches_evaluator.determine_best_fuzzy_match_from_file_data()

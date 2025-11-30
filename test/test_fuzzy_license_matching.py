@@ -6,7 +6,7 @@ import print_utils
 import utils
 from configuration import Configuration as Config
 from models.FileData import FileDataManager, FileData
-from search.fuzzy_license_search import search_assessment_files_for_fuzzy_license_header_match, MatchResult
+from search.fuzzy_license_search import fuzzy_match_assessment_files_for_licenses, MatchResult
 from tools import fuzzy_matches_evaluator
 from tools.assessment_reader import read_all_assessment_files
 from tools.print_statements_to_file_output import tee_stdout
@@ -18,7 +18,7 @@ class TestKeywordCombinationMatches(unittest.TestCase):
     def test_fuzzy_license_header_matching(self):
         Config.file_data_manager = FileDataManager()
         read_all_assessment_files(Path("input/licenses").resolve())
-        search_assessment_files_for_fuzzy_license_header_match()
+        fuzzy_match_assessment_files_for_licenses()
         fuzzy_matches_evaluator.determine_best_fuzzy_match_from_file_data()
         for file_data in Config.file_data_manager.get_all_file_data():
             print(f"File path: {file_data.file_path}")
@@ -71,7 +71,7 @@ class TestKeywordCombinationMatches(unittest.TestCase):
             file_data.file_extension = file_extension
             Config.file_data_manager.add_file_data(file_data)
 
-        search_assessment_files_for_fuzzy_license_header_match()
+        fuzzy_match_assessment_files_for_licenses()
         for file_data in Config.file_data_manager.get_all_file_data():
             if file_data.fuzzy_license_matches:
                 print(f"File path: {file_data.file_path}")

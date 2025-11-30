@@ -10,7 +10,7 @@ from pathlib import Path
 from prototypes import fuzzy_match_prototype_optimized
 from prototypes.fuzzy_match_prototype_with_versioning import fuzzy_match_in_file
 from search import fuzzy_license_search
-from tools import assessment_reader, fuzzy_matches_evaluator
+from tools import assessment_reader, fuzzy_matches_evaluator, index_file_content
 
 p = Path(__file__).resolve()
 
@@ -37,7 +37,10 @@ class TestTemplate(unittest.TestCase):
         Config.file_data_manager.add_file_data(file_data)
 
         licenses_dir = Path("input/fuzzy_matching_licenses").resolve()
-        fuzzy_license_header_search.search_assessment_files_for_fuzzy_license_header_match([licenses_dir])
+        licenses_normalized = utils.read_and_normalize_licenses([licenses_dir])
+        Config.file_indexes = index_file_content.build_file_indexes(Config.file_data_manager.get_all_file_data(), anchor_size=3)
+        Config.license_header_indexes = index_file_content.build_pattern_indexes_from_dict(licenses_normalized)
+        fuzzy_license_search.fuzzy_match_assessment_files_for_licenses(Config.license_header_indexes)
         fuzzy_matches_evaluator.determine_best_fuzzy_match_from_file_data()
         print_utils.print_files_with_fuzzy_license_matches()
 
@@ -47,16 +50,24 @@ class TestTemplate(unittest.TestCase):
         Config.file_data_manager = FileDataManager()
         assessment_reader.read_all_assessment_files(Path("input/fuzzy_matching").resolve())
         licenses_dir = Path("input/fuzzy_matching_licenses").resolve()
-        fuzzy_license_header_search.search_assessment_files_for_fuzzy_license_header_match([licenses_dir])
+        licenses_normalized = utils.read_and_normalize_licenses([licenses_dir])
+        Config.file_indexes = index_file_content.build_file_indexes(Config.file_data_manager.get_all_file_data(), anchor_size=3)
+        Config.license_header_indexes = index_file_content.build_pattern_indexes_from_dict(licenses_normalized)
+        fuzzy_license_search.fuzzy_match_assessment_files_for_licenses(Config.license_header_indexes)
         fuzzy_matches_evaluator.determine_best_fuzzy_match_from_file_data()
         print_utils.print_files_with_fuzzy_license_matches()
 
 
-    def test_fuzzy_matching_license_headers_to_file_text_optimized(self):
-        Config.file_data_manager = FileDataManager()
-        assessment_reader.read_all_assessment_files(Path("input/fuzzy_matching").resolve())
-        licenses_dir = Path("input/fuzzy_matching_licenses").resolve()
-        fuzzy_match_prototype_optimized.search_all_assessment_files_for_fuzzy_license_matches([licenses_dir])
+    # def test_fuzzy_matching_license_headers_to_file_text_optimized(self):
+    #     Config.file_data_manager = FileDataManager()
+    #     assessment_reader.read_all_assessment_files(Path("input/fuzzy_matching").resolve())
+    #     licenses_dir = Path("input/fuzzy_matching_licenses").resolve()
+    #     licenses_normalized = utils.read_and_normalize_licenses([licenses_dir])
+    #     Config.file_indexes = index_file_content.build_file_indexes(Config.file_data_manager.get_all_file_data(), anchor_size=3)
+    #     Config.license_header_indexes = index_file_content.build_pattern_indexes_from_dict(licenses_normalized)
+    #     fuzzy_license_search.fuzzy_match_assessment_files_for_licenses(Config.license_header_indexes)
+    #     fuzzy_matches_evaluator.determine_best_fuzzy_match_from_file_data()
+    #     fuzzy_match_prototype_optimized.search_all_assessment_files_for_fuzzy_license_matches([licenses_dir])
 
 
     def test_fuzzy_matching_license_headers_to_file_text(self):

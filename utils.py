@@ -471,3 +471,15 @@ def any_match_allow_none(target: Optional[str],
 
     # Case 2: target is a real string – check string equality, skipping None
     return any(s is not None and target == s for s in candidates)
+
+
+def read_and_normalize_licenses(license_dirs: List[Path]):
+    licenses = load_file_contents_from_directory(license_dirs)
+
+    # Pre-normalize all patterns once
+    licenses_normalized: Dict[Path, str] = {
+        path: remove_punctuation_and_normalize_text(text)
+        for path, text in licenses.items()
+    }
+
+    return licenses_normalized

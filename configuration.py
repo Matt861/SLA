@@ -42,4 +42,10 @@ class Configuration:
 
     # Global instance of file data manager
     file_data_manager = None
+    # Indexed assessment file content
+    file_indexes = None
+    # Indexed license content
+    license_indexes = None
+    # Indexed license header content
+    license_header_indexes = None
 
