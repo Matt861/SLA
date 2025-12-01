@@ -171,8 +171,8 @@ def fuzzy_match_in_file(pattern: str, file_text: str | Path) -> Optional[MatchRe
         matched_substring = that longest contiguous block only (short phrase)
 
     Version detection:
-      - expected_version: from the pattern (license text)
-      - found_version:    from the file text
+      - expected_versions: from the pattern (license text)
+      - found_versions:    from the file text
     """
 
     if not pattern or not file_text:

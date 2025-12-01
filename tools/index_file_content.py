@@ -31,8 +31,8 @@ class MatchResult:
     match_percent: float
     start_index: int
     end_index: int
-    expected_version: Optional[str] = None  # version found in the pattern (license text)
-    found_version: Optional[str] = None     # version found in the file text
+    expected_versions: Optional[List[str]] = None  # version found in the pattern (license text)
+    found_versions: Optional[List[str]] = None     # version found in the file text
     license_name: Optional[str] = None
 
 

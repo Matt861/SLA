@@ -59,8 +59,8 @@ from tools.index_file_content import FileIndex, PatternIndex, MatchResult, build
 #     match_percent: float
 #     start_index: int
 #     end_index: int
-#     expected_version: Optional[str] = None  # version found in the pattern (license text)
-#     found_version: Optional[str] = None     # version found in the file text
+#     expected_versions: Optional[str] = None  # version found in the pattern (license text)
+#     found_versions: Optional[str] = None     # version found in the file text
 #     license_name: Optional[str] = None
 
 
@@ -304,7 +304,7 @@ def _extract_versions(text: str) -> Optional[List[str]]:
     Returns a list of numeric parts as strings (e.g. ["2", "3.0"]), or None if none found.
     """
     if not text:
-        return None
+        return []
 
     versions: List[str] = []
 
@@ -318,7 +318,7 @@ def _extract_versions(text: str) -> Optional[List[str]]:
                     versions.append(g)
                 break  # move to the next match
 
-    return versions or None
+    return versions
 
 
 def fuzzy_match_licenses_in_assessment_files(pattern_indexes):
@@ -341,16 +341,17 @@ def fuzzy_match_licenses_in_assessment_files(pattern_indexes):
             if fuzzy_match_result and fuzzy_match_result.match_percent > 50.0:
                 license_name = utils.get_file_name_from_path_without_extension(pattern_path)
                 fuzzy_match_result.license_name = license_name
-                #fuzzy_match_result.expected_version = utils.extract_versions_from_name(license_name)
-                fuzzy_match_result.expected_version = utils.extract_version_from_name(license_name)
-                found_version = _extract_versions(fuzzy_match_result.matched_substring)
-                #found_version = _extract_version(fuzzy_match_result.matched_substring)
-                fuzzy_match_result.found_version = utils.normalize_number_string(found_version)
+                fuzzy_match_result.expected_versions = utils.extract_versions_from_name(license_name)
+                #fuzzy_match_result.expected_version = utils.extract_version_from_name(license_name)
+                #found_version = _extract_versions(fuzzy_match_result.matched_substring)
+                found_versions = _extract_versions(fuzzy_match_result.matched_substring)
+                #fuzzy_match_result.found_versions = utils.normalize_number_string(found_versions)
+                fuzzy_match_result.found_versions = utils.normalize_number_strings(found_versions)
                 file_model.fuzzy_license_matches.append(fuzzy_match_result)
                 # print(f"License name: {license_name}")
                 # print(f"Match percent: {fuzzy_match_result.match_percent:.2f}%")
-                # print(f"Expected match version: {fuzzy_match_result.expected_version}")
-                # print(f"Found match version: {fuzzy_match_result.found_version}")
+                # print(f"Expected match version: {fuzzy_match_result.expected_versions}")
+                # print(f"Found match version: {fuzzy_match_result.found_versions}")
                 # print("Matched substring:")
                 # print(fuzzy_match_result.matched_substring)
 

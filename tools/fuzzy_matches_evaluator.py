@@ -10,21 +10,19 @@ def determine_best_fuzzy_match_from_file_data():
             best_fuzzy_match = None
             prior_match_version_was_exact = False
             for fuzzy_license_match in file_data.fuzzy_license_matches:
-                expected_version = fuzzy_license_match.expected_version
-                found_versions = fuzzy_license_match.found_version
-                if found_versions:
-                    for found_version in found_versions:
-                        if expected_version == found_version:
-                            if fuzzy_license_match.match_percent > best_exact_match_percent:
-                                best_match_percent = fuzzy_license_match.match_percent
-                                best_exact_match_percent = fuzzy_license_match.match_percent
-                                best_fuzzy_match = fuzzy_license_match
-                                prior_match_version_was_exact = True
-                        elif not prior_match_version_was_exact and fuzzy_license_match.match_percent > best_match_percent:
-                            best_match_percent = fuzzy_license_match.match_percent
-                            best_fuzzy_match = fuzzy_license_match
+                expected_versions = fuzzy_license_match.expected_versions
+                found_versions = fuzzy_license_match.found_versions
+                if expected_versions == found_versions:
+                    if fuzzy_license_match.match_percent > best_exact_match_percent:
+                        best_match_percent = fuzzy_license_match.match_percent
+                        best_exact_match_percent = fuzzy_license_match.match_percent
+                        best_fuzzy_match = fuzzy_license_match
+                        prior_match_version_was_exact = True
+                elif not prior_match_version_was_exact and fuzzy_license_match.match_percent > best_match_percent:
+                    best_match_percent = fuzzy_license_match.match_percent
+                    best_fuzzy_match = fuzzy_license_match
                 else:
-                    if expected_version is None:
+                    if not expected_versions:
                         if fuzzy_license_match.match_percent > best_exact_match_percent:
                             best_match_percent = fuzzy_license_match.match_percent
                             best_exact_match_percent = fuzzy_license_match.match_percent
@@ -35,9 +33,7 @@ def determine_best_fuzzy_match_from_file_data():
                         best_fuzzy_match = fuzzy_license_match
             file_data.license_names.append(best_fuzzy_match.license_name)
             file_data.fuzzy_license_match = best_fuzzy_match
-            # if file_data.license_name is None:
-            #     file_data.license_name = best_fuzzy_match.license_name
-            #     file_data.fuzzy_license_match = best_fuzzy_match
+
 
 
 # def determine_best_fuzzy_match_from_file_data():
@@ -48,9 +44,9 @@ def determine_best_fuzzy_match_from_file_data():
 #             best_fuzzy_match = None
 #             prior_match_version_was_exact = False
 #             for fuzzy_license_match in file_data.fuzzy_license_matches:
-#                 expected_version = fuzzy_license_match.expected_version
-#                 found_version = fuzzy_license_match.found_version
-#                 if expected_version == found_version:
+#                 expected_versions = fuzzy_license_match.expected_versions
+#                 found_versions = fuzzy_license_match.found_versions
+#                 if expected_versions == found_versions:
 #                     if fuzzy_license_match.match_percent > best_exact_match_percent:
 #                         best_match_percent = fuzzy_license_match.match_percent
 #                         best_exact_match_percent = fuzzy_license_match.match_percent

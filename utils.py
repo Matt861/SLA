@@ -197,7 +197,7 @@ def remove_punctuation_keep_decimal_dots(text: str) -> str:
     of numbers or version-like tokens (i.e., a '.' with digits on both sides,
     such as in '1.0' or '1.0.0').
 
-    Also handles LaTeX-style escaped sequences like '\&.' so that
+    Also handles LaTeX-style escaped sequences like '\\&.' so that
     '2\\&.0\\&.' becomes '2.0'.
     """
     # Normalize '\&.' sequences to a plain dot
@@ -405,7 +405,7 @@ def extract_version_from_name(filename: str) -> Optional[str]:
     return None
 
 
-def extract_versions_from_name(name: str) -> List[str]:
+def extract_versions_from_name(name: str) -> Optional[List[str]]:
     """
     Extract all numbers (like 2, 2.0, 2.1) from a file name.
 
@@ -447,6 +447,35 @@ def extract_versions_from_name(name: str) -> List[str]:
 
 
 def normalize_number_string(values: Optional[str]) -> list[str] | None:
+    """
+    Take a numeric string like "2", "2.1", "10", "-3", etc.
+
+    - If it's an int (e.g. "2", "3", "10", "-3"), return it as "<int>.0"
+      e.g. "2" -> "2.0", "-3" -> "-3.0"
+    - Otherwise, return the original string unchanged
+      e.g. "2.1" -> "2.1", "2.0" -> "2.0"
+    - If value is None, return None
+    """
+    if values is None:
+        return None
+
+    normalized_strings = []
+
+    for value in values:
+
+        s = value.strip()
+
+        # Match an optional sign followed by digits only (no decimal point)
+        if re.fullmatch(r'[+-]?\d+', s):
+            normalized_strings.append(f"{int(s)}.0")
+            #return f"{int(s)}.0"
+        else:
+            normalized_strings.append(s)
+            #return s
+    return normalized_strings
+
+
+def normalize_number_strings(values: Optional[List[str]]) -> list[str] | None:
     """
     Take a numeric string like "2", "2.1", "10", "-3", etc.
 
