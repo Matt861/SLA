@@ -47,8 +47,8 @@ class FileData:
         self._file_extension = None
         self._file_header = None
         self._keyword_matches = None
-        self._license_matches = None
-        self._license_name = None
+        self._license_matches = []
+        self._license_names = []
         self._is_released = False
         self._file_hash = None
         self._license_match_strength = None
@@ -114,12 +114,12 @@ class FileData:
         self._license_matches = license_matches
 
     @property
-    def license_name(self):
-        return self._license_name
+    def license_names(self):
+        return self._license_names
 
-    @license_name.setter
-    def license_name(self, license_name):
-        self._license_name = license_name
+    @license_names.setter
+    def license_names(self, license_names):
+        self._license_names = license_names
 
     @property
     def is_released(self):
@@ -247,7 +247,7 @@ class FileData:
         return {
             "file_path": str(Path(self.file_path).relative_to(Config.assessments_dir)),
             "file_hash": self.file_hash,
-            "license": self.license_name,
+            "license": self.license_names,
             "file_content_b64": compress_to_b64(self.file_content),
             "file_content_is_text": is_text,
             # add "file_extension": self.file_extension if you want it too
@@ -273,7 +273,7 @@ class FileData:
             file_content=file_content,
         )
         obj.file_hash = file_hash
-        obj.license_name = license_name
+        obj.license_names = license_name
         return obj
 
 

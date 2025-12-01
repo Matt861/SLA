@@ -13,7 +13,7 @@ def print_files_with_full_license_match():
         if file_data.license_matches:
             full_license_match_count += 1
             print(f"{"File: "}{Path(file_data.file_path).relative_to(Config.assessments_dir)}")
-            print(f"{"License name: "}{file_data.license_name}")
+            print(f"{"License name(s): "}{file_data.license_names}")
     print(f"{"Total files with full license match: "}{full_license_match_count}")
 
 
@@ -53,7 +53,8 @@ def print_files_with_fuzzy_license_matches(file_path="output/fuzzy_license_match
                 fuzzy_license_match_count += 1
                 print(f"{"File: "}{Path(file_data.file_path).relative_to(Config.assessments_dir)}")
                 #print(f"File: {Path(file_data.file_path)}")
-                print(f"{"License name: "}{fuzzy_license_match.license_name}")
+                #print(f"{"License name(s): "}{fuzzy_license_match.license_name}")
+                print(f"{"License name(s): "}{file_data.license_names}")
                 print(f"Match percent: {fuzzy_license_match.match_percent:.2f}%")
                 print(f"Expected match version: {fuzzy_license_match.expected_version}")
                 print(f"Found match version: {fuzzy_license_match.found_version}")

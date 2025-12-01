@@ -40,7 +40,7 @@ class TestTemplate(unittest.TestCase):
         licenses_normalized = utils.read_and_normalize_licenses([licenses_dir])
         Config.file_indexes = index_file_content.build_file_indexes(Config.file_data_manager.get_all_file_data(), anchor_size=3)
         Config.license_header_indexes = index_file_content.build_pattern_indexes_from_dict(licenses_normalized)
-        fuzzy_license_search.fuzzy_match_assessment_files_for_licenses(Config.license_header_indexes)
+        fuzzy_license_search.fuzzy_match_licenses_in_assessment_files(Config.license_header_indexes)
         fuzzy_matches_evaluator.determine_best_fuzzy_match_from_file_data()
         print_utils.print_files_with_fuzzy_license_matches()
 
@@ -53,7 +53,7 @@ class TestTemplate(unittest.TestCase):
         licenses_normalized = utils.read_and_normalize_licenses([licenses_dir])
         Config.file_indexes = index_file_content.build_file_indexes(Config.file_data_manager.get_all_file_data(), anchor_size=3)
         Config.license_header_indexes = index_file_content.build_pattern_indexes_from_dict(licenses_normalized)
-        fuzzy_license_search.fuzzy_match_assessment_files_for_licenses(Config.license_header_indexes)
+        fuzzy_license_search.fuzzy_match_licenses_in_assessment_files(Config.license_header_indexes)
         fuzzy_matches_evaluator.determine_best_fuzzy_match_from_file_data()
         print_utils.print_files_with_fuzzy_license_matches()
 

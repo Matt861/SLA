@@ -405,6 +405,25 @@ def extract_version_from_name(filename: str) -> Optional[str]:
     return None
 
 
+def extract_versions_from_name(name: str) -> List[str]:
+    """
+    Extract all numbers (like 2, 2.0, 2.1) from a file name.
+
+    Examples:
+        "ECL-2.0.txt"                 -> ["2.0"]
+        "ECL-2.1.txt"                 -> ["2.1"]
+        "ECL-2.txt"                   -> ["2"]
+        "LGPL-2.0-or-later.txt"       -> ["2.0"]
+        "APL-2.0-GPL-3.0.txt"         -> ["2.0", "3.0"]
+    """
+    # Ensure we're only working with the file name (no directories)
+    name = Path(name).name
+
+    # Find all sequences of digits, optionally followed by .digits
+    versions = re.findall(r'\d+(?:\.\d+)?', name)
+    return versions
+
+
 # def normalize_number_string(value: Optional[str]) -> Optional[str]:
 #     """
 #     Take a numeric string like "2", "2.1", "10", "-3", etc.

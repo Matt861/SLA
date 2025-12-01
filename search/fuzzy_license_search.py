@@ -6,6 +6,8 @@ from pathlib import Path
 from typing import Any, Dict, List, Tuple, Optional, Union
 from configuration import Configuration as Config
 from loggers.fuzzy_license_header_search_logger import fuzzy_license_header_search_logger as Logger
+from models.FileData import FileDataManager
+from tools import index_file_content
 from tools.index_file_content import FileIndex, PatternIndex, MatchResult, build_file_indexes, \
     build_pattern_indexes_from_dict
 
@@ -319,7 +321,7 @@ def _extract_versions(text: str) -> Optional[List[str]]:
     return versions or None
 
 
-def fuzzy_match_assessment_files_for_licenses(pattern_indexes):
+def fuzzy_match_licenses_in_assessment_files(pattern_indexes):
     # license_headers = utils.load_file_contents_from_directory(license_dirs)
     #
     # # Pre-normalize all patterns once
@@ -335,10 +337,11 @@ def fuzzy_match_assessment_files_for_licenses(pattern_indexes):
         file_model = f_idx.source_obj  # original model instance
         for p_idx in pattern_indexes:
             pattern_path = p_idx.source_path  # the Path key from Dict[Path, str]
-            fuzzy_match_result = best_match_indexed(f_idx, p_idx, anchor_size=3)
+            fuzzy_match_result = best_match_indexed(f_idx, p_idx, anchor_size=4)
             if fuzzy_match_result and fuzzy_match_result.match_percent > 50.0:
                 license_name = utils.get_file_name_from_path_without_extension(pattern_path)
                 fuzzy_match_result.license_name = license_name
+                #fuzzy_match_result.expected_version = utils.extract_versions_from_name(license_name)
                 fuzzy_match_result.expected_version = utils.extract_version_from_name(license_name)
                 found_version = _extract_versions(fuzzy_match_result.matched_substring)
                 #found_version = _extract_version(fuzzy_match_result.matched_substring)
@@ -358,4 +361,8 @@ def fuzzy_match_assessment_files_for_licenses(pattern_indexes):
 
 
 if __name__ == "__main__":
-    fuzzy_match_assessment_files_for_licenses()
+    Config.file_data_manager = FileDataManager()
+    license_headers_normalized = utils.read_and_normalize_licenses([Config.license_headers_dir, Config.manual_license_headers_dir])
+    Config.file_indexes = index_file_content.build_file_indexes(Config.file_data_manager.get_all_file_data(), anchor_size=4)
+    Config.license_header_indexes = index_file_content.build_pattern_indexes_from_dict(license_headers_normalized)
+    fuzzy_match_licenses_in_assessment_files(Config.license_header_indexes)

@@ -33,9 +33,11 @@ def determine_best_fuzzy_match_from_file_data():
                     elif not prior_match_version_was_exact and fuzzy_license_match.match_percent > best_match_percent:
                         best_match_percent = fuzzy_license_match.match_percent
                         best_fuzzy_match = fuzzy_license_match
-            if file_data.license_name is None:
-                file_data.license_name = best_fuzzy_match.license_name
-                file_data.fuzzy_license_match = best_fuzzy_match
+            file_data.license_names.append(best_fuzzy_match.license_name)
+            file_data.fuzzy_license_match = best_fuzzy_match
+            # if file_data.license_name is None:
+            #     file_data.license_name = best_fuzzy_match.license_name
+            #     file_data.fuzzy_license_match = best_fuzzy_match
 
 
 # def determine_best_fuzzy_match_from_file_data():
