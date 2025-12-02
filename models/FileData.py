@@ -54,7 +54,7 @@ class FileData:
         self._license_match_strength = None
         self._keyword_combination_matches = None
         self._fuzzy_license_matches = []
-        self.fuzzy_license_match = None
+        self.fuzzy_license_match = []
         # self._header_data = header_data if header_data is not None else []
         # self._file_entry = file_entry if file_entry is not None else []
         # self._file_search_data = file_search_data if file_search_data is not None else []

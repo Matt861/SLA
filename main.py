@@ -45,7 +45,8 @@ def main() -> None:
     # SCAN ALL ASSESSMENT FILES FOR LICENSE SUBSTRING MATCHES
     license_substring_search.search_assessment_files_for_license_substrings()
     # SCAN ALL ASSESSMENT FILES TO DETERMINE THE BEST FUZZY MATCH FOUND
-    fuzzy_matches_evaluator.determine_best_fuzzy_match_from_file_data()
+    #fuzzy_matches_evaluator.determine_best_fuzzy_match_from_file_data()
+    fuzzy_matches_evaluator.determine_best_fuzzy_matches_from_file_data()
 
 
     # SAVE FILE DATA TO JSON

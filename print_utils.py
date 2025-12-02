@@ -35,37 +35,70 @@ def get_best_match_percent(file_data) -> float:
     return best
 
 
-def print_files_with_fuzzy_license_matches(file_path="output/fuzzy_license_matches4.txt"):
+def print_files_with_fuzzy_license_matches(file_path="output/fuzzy_license_matches5.txt"):
     fuzzy_license_match_count = 0
     with tee_stdout(Path(Config.root_dir) / file_path):
-        sorted_list = sorted(
-            Config.file_data_manager.get_all_file_data(),
-            key=lambda f: (
-                f.fuzzy_license_match.match_percent
-                if f.fuzzy_license_match is not None
-                else 0.0
-            ),
-            reverse=True,
-        )
-        for file_data in sorted_list:
+        # sorted_list = sorted(
+        #     Config.file_data_manager.get_all_file_data(),
+        #     key=lambda f: (
+        #         f.fuzzy_license_match.match_percent
+        #         if f.fuzzy_license_match is not None
+        #         else 0.0
+        #     ),
+        #     reverse=True,
+        # )
+        for file_data in Config.file_data_manager.get_all_file_data():
             if file_data.fuzzy_license_match:
-                fuzzy_license_match = file_data.fuzzy_license_match
-                fuzzy_license_match_count += 1
-                print(f"{"File: "}{Path(file_data.file_path).relative_to(Config.assessments_dir)}")
-                #print(f"File: {Path(file_data.file_path)}")
-                #print(f"{"License name(s): "}{fuzzy_license_match.license_name}")
-                print(f"{"License name(s): "}{file_data.license_names}")
-                print(f"Match percent: {fuzzy_license_match.match_percent:.2f}%")
-                print(f"Expected match version(s): {fuzzy_license_match.expected_versions}")
-                print(f"Found match version(s): {fuzzy_license_match.found_versions}")
-                # if not utils.any_match_allow_none(fuzzy_license_match.expected_versions, fuzzy_license_match.found_versions):
-                #     print("Version mismatch")
-                if fuzzy_license_match.found_versions != fuzzy_license_match.expected_versions:
-                    print("Version mismatch")
-                print("Matched substring:")
-                print(fuzzy_license_match.matched_substring)
+                for fuzzy_match in file_data.fuzzy_license_match:
+                    fuzzy_license_match_count += 1
+                    print(f"{"File: "}{Path(file_data.file_path).relative_to(Config.assessments_dir)}")
+                    #print(f"File: {Path(file_data.file_path)}")
+                    #print(f"{"License name(s): "}{fuzzy_license_match.license_name}")
+                    print(f"{"License name(s): "}{file_data.license_names}")
+                    print(f"Match percent: {fuzzy_match.match_percent:.2f}%")
+                    print(f"Expected match version(s): {fuzzy_match.expected_versions}")
+                    print(f"Found match version(s): {fuzzy_match.found_versions}")
+                    # if not utils.any_match_allow_none(fuzzy_license_match.expected_versions, fuzzy_license_match.found_versions):
+                    #     print("Version mismatch")
+                    if fuzzy_match.found_versions != fuzzy_match.expected_versions:
+                        print("Version mismatch")
+                    print("Matched substring:")
+                    print(fuzzy_match.matched_substring)
 
         print(f"{"Total files with fuzzy license match: "}{fuzzy_license_match_count}")
+
+
+# def print_files_with_fuzzy_license_matches(file_path="output/fuzzy_license_matches4.txt"):
+#     fuzzy_license_match_count = 0
+#     with tee_stdout(Path(Config.root_dir) / file_path):
+#         sorted_list = sorted(
+#             Config.file_data_manager.get_all_file_data(),
+#             key=lambda f: (
+#                 f.fuzzy_license_match.match_percent
+#                 if f.fuzzy_license_match is not None
+#                 else 0.0
+#             ),
+#             reverse=True,
+#         )
+#         for file_data in sorted_list:
+#             if file_data.fuzzy_license_match:
+#                 fuzzy_license_match = file_data.fuzzy_license_match
+#                 fuzzy_license_match_count += 1
+#                 print(f"{"File: "}{Path(file_data.file_path).relative_to(Config.assessments_dir)}")
+#                 #print(f"File: {Path(file_data.file_path)}")
+#                 #print(f"{"License name(s): "}{fuzzy_license_match.license_name}")
+#                 print(f"{"License name(s): "}{file_data.license_names}")
+#                 print(f"Match percent: {fuzzy_license_match.match_percent:.2f}%")
+#                 print(f"Expected match version(s): {fuzzy_license_match.expected_versions}")
+#                 print(f"Found match version(s): {fuzzy_license_match.found_versions}")
+#                 # if not utils.any_match_allow_none(fuzzy_license_match.expected_versions, fuzzy_license_match.found_versions):
+#                 #     print("Version mismatch")
+#                 if fuzzy_license_match.found_versions != fuzzy_license_match.expected_versions:
+#                     print("Version mismatch")
+#                 print("Matched substring:")
+#                 print(fuzzy_license_match.matched_substring)
+#
+#         print(f"{"Total files with fuzzy license match: "}{fuzzy_license_match_count}")
 
 
 def merge_sort(arr):
