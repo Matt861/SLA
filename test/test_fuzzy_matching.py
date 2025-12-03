@@ -19,7 +19,7 @@ class TestTemplate(unittest.TestCase):
 
     def test_fuzzy_matching_license_headers_to_single_file_text(self):
         Config.file_data_manager = FileDataManager()
-        file_path = Path("input/fuzzy_matching/EVP_KDF_KB.7ssl").resolve()
+        file_path = Path("input/fuzzy_matching/gawk").resolve()
         try:
             # Try reading as text
             with open(file_path, "r", encoding="utf-8") as f:
@@ -36,12 +36,12 @@ class TestTemplate(unittest.TestCase):
         file_data.file_extension = file_extension
         Config.file_data_manager.add_file_data(file_data)
 
-        licenses_dir = Path("input/fuzzy_matching_licenses").resolve()
+        licenses_dir = Path("input/fuzzy_matching_license").resolve()
         licenses_normalized = utils.read_and_normalize_licenses([licenses_dir])
-        Config.file_indexes = index_file_content.build_file_indexes(Config.file_data_manager.get_all_file_data(), anchor_size=3)
+        Config.file_indexes = index_file_content.build_file_indexes(Config.file_data_manager.get_all_file_data(), anchor_size=4)
         Config.license_header_indexes = index_file_content.build_pattern_indexes_from_dict(licenses_normalized)
         fuzzy_license_search.fuzzy_match_licenses_in_assessment_files(Config.license_header_indexes)
-        fuzzy_matches_evaluator.determine_best_fuzzy_match_from_file_data()
+        fuzzy_matches_evaluator.determine_best_fuzzy_matches_from_file_data()
         print_utils.print_files_with_fuzzy_license_matches()
 
 

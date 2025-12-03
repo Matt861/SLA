@@ -1,3 +1,4 @@
+from collections import Counter
 from pathlib import Path
 
 import utils
@@ -35,19 +36,18 @@ def get_best_match_percent(file_data) -> float:
     return best
 
 
-def print_files_with_fuzzy_license_matches(file_path="output/fuzzy_license_matches5.txt"):
+def print_files_with_fuzzy_license_matches(file_path="output/fuzzy_license_matches6.txt"):
+    sorted_list = sorted(
+        Config.file_data_manager.get_all_file_data(),
+        key=lambda f: max(
+            (m.match_percent for m in (f.fuzzy_license_match or [])),
+            default=0.0,
+        ),
+        reverse=True,
+    )
     fuzzy_license_match_count = 0
     with tee_stdout(Path(Config.root_dir) / file_path):
-        # sorted_list = sorted(
-        #     Config.file_data_manager.get_all_file_data(),
-        #     key=lambda f: (
-        #         f.fuzzy_license_match.match_percent
-        #         if f.fuzzy_license_match is not None
-        #         else 0.0
-        #     ),
-        #     reverse=True,
-        # )
-        for file_data in Config.file_data_manager.get_all_file_data():
+        for file_data in sorted_list:
             if file_data.fuzzy_license_match:
                 for fuzzy_match in file_data.fuzzy_license_match:
                     fuzzy_license_match_count += 1
@@ -60,7 +60,7 @@ def print_files_with_fuzzy_license_matches(file_path="output/fuzzy_license_match
                     print(f"Found match version(s): {fuzzy_match.found_versions}")
                     # if not utils.any_match_allow_none(fuzzy_license_match.expected_versions, fuzzy_license_match.found_versions):
                     #     print("Version mismatch")
-                    if fuzzy_match.found_versions != fuzzy_match.expected_versions:
+                    if Counter(fuzzy_match.found_versions) != Counter(fuzzy_match.expected_versions):
                         print("Version mismatch")
                     print("Matched substring:")
                     print(fuzzy_match.matched_substring)

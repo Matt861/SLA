@@ -342,6 +342,9 @@ def fuzzy_match_licenses_in_assessment_files(pattern_indexes):
                 license_name = utils.get_file_name_from_path_without_extension(pattern_path)
                 fuzzy_match_result.license_name = license_name
                 fuzzy_match_result.expected_versions = utils.extract_versions_from_name(license_name)
+                # if "2.0" in fuzzy_match_result.expected_versions and "3.0" in fuzzy_match_result.expected_versions:
+                #     print('both here')
+                #     print(fuzzy_match_result.matched_substring)
                 #fuzzy_match_result.expected_version = utils.extract_version_from_name(license_name)
                 #found_version = _extract_versions(fuzzy_match_result.matched_substring)
                 found_versions = _extract_versions(fuzzy_match_result.matched_substring)

@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, Counter
 from typing import Dict, List
 
 from configuration import Configuration as Config
@@ -15,7 +15,6 @@ def is_match_percent_greater_than_all(fuzzy_license_match, best_fuzzy_matches):
 
 def determine_best_fuzzy_matches_from_file_data():
     for file_data in Config.file_data_manager.get_all_file_data():
-        best_fuzzy_matches = []
         all_version_matches = []
         common_version_matches = []
         no_version_matches = []
@@ -25,23 +24,38 @@ def determine_best_fuzzy_matches_from_file_data():
         common_versions_found = []
         best_no_version_match_percent = 0.0
         best_no_version_match = None
+        # if "bin" in str(file_data.file_path) and "gawk" in str(file_data.file_path):
+        #     print('here')
         if file_data.fuzzy_license_matches:
             for fuzzy_license_match in file_data.fuzzy_license_matches:
                 expected_versions = fuzzy_license_match.expected_versions
                 found_versions = fuzzy_license_match.found_versions
                 common_versions = [x for x in expected_versions if x in found_versions]
-                if expected_versions == found_versions:
+                # if "2.0" in expected_versions and "3.0" in expected_versions:
+                #     print('both here')
+                if Counter(expected_versions) == Counter(found_versions):
                     all_version_matches.append(fuzzy_license_match)
                 elif common_versions:
                     common_version_matches.append(fuzzy_license_match)
                 else:
                     no_version_matches.append(fuzzy_license_match)
             if all_version_matches:
+                prior_match_has_found_versions = False
                 for all_version_match in all_version_matches:
-                    if all_version_match.match_percent > best_all_version_match_percent:
+                    if not all_version_match.found_versions:
+                        if not prior_match_has_found_versions:
+                            if all_version_match.match_percent > best_all_version_match_percent:
+                                best_all_version_match_percent = all_version_match.match_percent
+                                best_all_version_match = all_version_match
+                    elif all_version_match.found_versions and not prior_match_has_found_versions:
+                        best_all_version_match_percent = 0.0
+                        if all_version_match.match_percent > best_all_version_match_percent:
+                            best_all_version_match_percent = all_version_match.match_percent
+                            best_all_version_match = all_version_match
+                            prior_match_has_found_versions = True
+                    elif all_version_match.match_percent > best_all_version_match_percent:
                         best_all_version_match_percent = all_version_match.match_percent
                         best_all_version_match = all_version_match
-                #best_fuzzy_matches.append(best_all_version_match)
             elif common_version_matches:
                 by_found_version: Dict[str, List[MatchResult]] = defaultdict(list)
                 for match in common_version_matches:
@@ -61,7 +75,7 @@ def determine_best_fuzzy_matches_from_file_data():
                                 common_versions_found.append(common_version)
                         elif common_version in common_versions_found:
                             same_version_matches = by_found_version.get(common_version, [])
-                            if is_match_percent_greater_than_all(common_version, same_version_matches):
+                            if is_match_percent_greater_than_all(common_version_match, same_version_matches):
                                 #remove already matching version of lower percentage
                                 best_common_version_matches = [
                                     match

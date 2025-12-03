@@ -63,6 +63,9 @@ def get_file_name_from_path_without_extension(path: Path) -> str:
     # Strip the extension
     name_without_ext, _ = os.path.splitext(filename)
 
+    # Strip _v1, _v2, etc
+    name_without_ext = name_without_ext.split("_", 1)[0]
+
     return name_without_ext
 
 
@@ -364,6 +367,9 @@ def load_file_contents_from_directory(license_dirs: List[Path]) -> Dict[Path, st
             for filename in filenames:
                 if not filename.lower().endswith(".txt"):
                     continue
+
+                if "_v1" in filename:
+                    print('')
 
                 license_path = Path(dirpath, filename).resolve()
 
